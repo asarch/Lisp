@@ -64,8 +64,8 @@ There are two types of variables:
 
 ## S-Expressions (a.k.a. Symbolic-Expressions)
 
-All the "commands" in Lips use the preffix notation:
+All the "commands" in Lisp use the preffix notation:
 
-Instead of `(3 + 4)` you should write `(+ 3 4)`
+Instead of writing `(3 + 4)`, you have to write `(+ 3 4)`.
 
 Lisp does not EXECUTE COMMANDS, it EVALUATES EXPRESSIONS instead.
