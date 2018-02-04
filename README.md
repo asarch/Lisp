@@ -27,7 +27,7 @@ In Lisp is legal to use the hyphen as the name of an atom.
 
 An atom can be:
 
-* A sting.
+* A string.
 * A number.
 * A symbol.
 
