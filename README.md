@@ -10,7 +10,7 @@ Everything in Lisp is a list:
 
 ## Atoms
 
-List are made of atoms (the indivisible part of Lisp):
+Lists are made of atoms (the indivisible part of Lisp):
 
 `FOO`, 
 `BAR`, 
