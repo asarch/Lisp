@@ -16,7 +16,7 @@ Lists are made of atoms (the indivisible part of Lisp):
 `BAR`, 
 `BAZ`.
 
-Atomos are separated by space:
+Atoms are separated by space:
 
 `THERE ARE FIVE ATOMS HERE`
 
