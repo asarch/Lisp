@@ -44,7 +44,7 @@ There are three different types of numbers:
 
 * Integers: `1`, `23434`, `3434342`, etc.
 * Floating-points: `3.141516`, `0.232`, `190.2323`, etc.
-* Fractions: `1/2`, `3/5`, `5/8`, etc.
+* Ratios: `1/2`, `3/5`, `5/8`, etc.
 
 ## Symbols
 
@@ -54,6 +54,24 @@ A symbol can be:
 * A variable name.
 * The name of a macro.
 * A special operator.
+
+## Cells
+
+A symbol in a list is also known as a cell:
+
+`(FOO)`
+
+Lists can have as many cells as you want:
+
+`(THIS LIST HAS A LOT A LOT A LOT OF CELLS)`
+
+Even other lists:
+
+`((BEER AND TACOS) OR (HAMBURGER WITH CHEEZE))`
+
+## Cons cell
+
+A cell in Lisp is known as a "cons cell".
 
 ## Variables
 
