@@ -132,7 +132,7 @@ In Common Lisp we must do:
 
 ```Lisp
 (defgeneric init_point (point)
-    :documentation "You can add your explanation here")
+    (:documentation "You can add your explanation here"))
 
 (defgeneric foo (point))
 (defgeneric bar (point))
