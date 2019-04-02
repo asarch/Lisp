@@ -10,6 +10,8 @@ The rules of Common Lisp are dictated by ANSI in the X3J13 specification. Every 
 
 Some examples of implementations are Steel Bank Common Lisp (SBCL), CLisp and more recently for Android devices, CL-REPL.
 
+This document is about Common Lisp.
+
 ## Lists
 
 Everything in Lisp is a list:
@@ -96,7 +98,7 @@ Instead of writing `(3 + 4)`, you have to write `(+ 3 4)`.
 
 Lisp does not EXECUTE COMMANDS, it EVALUATES EXPRESSIONS instead.
 
-## Object-Oriented Programming with Common Lisp
+## Object-Oriented Programming in Common Lisp
 
 Common Lisp uses a technology called CLOS for "Common Lisp Object System" which, from the C Programming Language point of view, it consists of a structure with functions related:
 
@@ -143,6 +145,8 @@ Observe that, in contrast with C++ where you define an argument with then name o
 
 To the "group" of functions related to a specific class in Common Lisp is called "the protocol of the class".
 
+This is what we could call DEFGENERIC.
+
 And finally we define the protocol of the class which in C would be something like:
 
 ```C
@@ -160,7 +164,9 @@ In Common Lisp:
 (defmethod init_point((p point))
     (setf (slot-value 'p x) 0)
     (setf (slot-value 'p y) 0)
-    (setf (slot-value 'p z) 0)))
+    (setf (slot-value 'p z) 0))
 ```
 
 To this initialization function in Common Lisp is called the constructor of the class.
+
+This is what we could call DEFMETHOD
