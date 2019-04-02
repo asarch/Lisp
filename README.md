@@ -87,3 +87,70 @@ All the "commands" in Lisp use the preffix notation:
 Instead of writing `(3 + 4)`, you have to write `(+ 3 4)`.
 
 Lisp does not EXECUTE COMMANDS, it EVALUATES EXPRESSIONS instead.
+
+# Object-Oriented Programming with Common Lisp
+
+Common Lisp uses a technology called CLOS for "Common Lisp Object System" which, from the C Programming Language point of view, it consists of a structure with functions related:
+
+
+'''C
+typedef struct _POINT {
+    int x;
+    int y;
+    int z;
+} POINT;
+''''
+
+That is what we would call in Common Lisp: DEFCLASS:
+
+'''Lisp
+(defclass point ()
+    ((x :accessor x :initform 0)
+     (y :accessor y :initform 0)
+     (z :accessor z :initform 0)))
+'''
+
+The variable members of the class in Common Lisp are called "the slots" of the class.
+
+To create "function members" in C, we could do:
+
+'''C
+void init_point(POINT*);
+void foo(POINT*);
+void bar(POINT*);
+'''
+
+In Common Lisp we must do:
+
+'''Lisp
+(defgeneric init_point((p point)))
+(defgeneric foo((p point)))
+(defgeneric bar((p point)))
+(defgeneric baz((p point)))
+'''
+
+Observe that, in contrast with C++ where you define an argument with then name of the class first and then the name of the instance, in Common Lisp is viceversa.
+
+To the "group" of functions related to a specific class in Common Lisp is called "the protocol of the class".
+
+And finally we define the protocol of the class which in C would be something like:
+
+'''C
+void init_point(POINT *p)
+{
+    p->x = 0;
+    p->y = 0;
+    p->z = 0;
+}
+''''
+
+In Common Lisp:
+
+'''Lisp
+(defmethod init_point((p point))
+    (setf (slot-value 'p x) 0)
+    (setf (slot-value 'p y) 0)
+    (setf (slot-value 'p z) 0)))
+'''
+
+To this initialization function in Common Lisp is called the constructor of the class.
