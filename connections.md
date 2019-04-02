@@ -6,7 +6,8 @@
 
 In CL-REPL type:
 
-```:s
+```
+:s
 ```
 
 Or its function name:
