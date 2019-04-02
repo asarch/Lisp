@@ -2,6 +2,14 @@
 
 Lisp explained in a very simple way.
 
+## What Lisp?
+
+The original language Lisp went to hundreds of modifications which they were used to create the only Lisp we could find nowadays: Common Lisp and its minor sister Scheme.
+
+The rules of Common Lisp are dictated by ANSI in the X3J13 specification. Every implementation which wants to be full compatible with Common Lisp should follow this rules.
+
+Some examples of implementations are Steel Bank Common Lisp (SBCL), CLisp and more recently for Android devices, CL-REPL.
+
 ## Lists
 
 Everything in Lisp is a list:
@@ -88,46 +96,46 @@ Instead of writing `(3 + 4)`, you have to write `(+ 3 4)`.
 
 Lisp does not EXECUTE COMMANDS, it EVALUATES EXPRESSIONS instead.
 
-# Object-Oriented Programming with Common Lisp
+## Object-Oriented Programming with Common Lisp
 
 Common Lisp uses a technology called CLOS for "Common Lisp Object System" which, from the C Programming Language point of view, it consists of a structure with functions related:
 
 
-'''C
+```C
 typedef struct _POINT {
     int x;
     int y;
     int z;
 } POINT;
-''''
+```
 
 That is what we would call in Common Lisp: DEFCLASS:
 
-'''Lisp
+```Lisp
 (defclass point ()
     ((x :accessor x :initform 0)
      (y :accessor y :initform 0)
      (z :accessor z :initform 0)))
-'''
+```
 
 The variable members of the class in Common Lisp are called "the slots" of the class.
 
 To create "function members" in C, we could do:
 
-'''C
+```C
 void init_point(POINT*);
 void foo(POINT*);
 void bar(POINT*);
-'''
+```
 
 In Common Lisp we must do:
 
-'''Lisp
+```Lisp
 (defgeneric init_point((p point)))
 (defgeneric foo((p point)))
 (defgeneric bar((p point)))
 (defgeneric baz((p point)))
-'''
+```
 
 Observe that, in contrast with C++ where you define an argument with then name of the class first and then the name of the instance, in Common Lisp is viceversa.
 
@@ -135,22 +143,22 @@ To the "group" of functions related to a specific class in Common Lisp is called
 
 And finally we define the protocol of the class which in C would be something like:
 
-'''C
+```C
 void init_point(POINT *p)
 {
     p->x = 0;
     p->y = 0;
     p->z = 0;
 }
-''''
+```
 
 In Common Lisp:
 
-'''Lisp
+```Lisp
 (defmethod init_point((p point))
     (setf (slot-value 'p x) 0)
     (setf (slot-value 'p y) 0)
     (setf (slot-value 'p z) 0)))
-'''
+```
 
 To this initialization function in Common Lisp is called the constructor of the class.
