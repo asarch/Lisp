@@ -1,8 +1,8 @@
-#Connections
+# Connections
 
-##Emacs to Common Lisp Server
+## Emacs to Common Lisp Server
 
-###Start the server
+### Start the server
 
 In CL-REPL type:
 
@@ -30,7 +30,7 @@ The place to store your files for the USB stick is:
 
 The changes that are stored in the file are those in the superior blank part and not those typed in the REPL area.
 
-###Connecting to the server
+### Connecting to the server
 
 Just type in the buffer area:
 
