@@ -131,10 +131,12 @@ void bar(POINT*);
 In Common Lisp we must do:
 
 ```Lisp
-(defgeneric init_point((p point)))
-(defgeneric foo((p point)))
-(defgeneric bar((p point)))
-(defgeneric baz((p point)))
+(defgeneric init_point (point)
+    :documentation "You can add your explanation here")
+
+(defgeneric foo (point))
+(defgeneric bar (point))
+(defgeneric baz (point))
 ```
 
 Observe that, in contrast with C++ where you define an argument with then name of the class first and then the name of the instance, in Common Lisp is viceversa.
