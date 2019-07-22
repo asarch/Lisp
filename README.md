@@ -170,3 +170,80 @@ In Common Lisp:
 To this initialization function in Common Lisp is called the constructor of the class.
 
 This is what we could call DEFMETHOD
+
+## Example
+
+```Lisp
+(defclass point ()
+  ((x :initform 0 :initarg :x :accessor x)
+   (y :initform 0 :initarg :y :accessor y)
+   (z :initform 0 :initarg :z :accessor z)))
+
+(defclass rect ()
+  ((p1 :initform (make-instance 'point) :initarg :p1 :accessor p1)
+   (p2 :initform (make-instance 'point) :initarg :p2 :accessor p2)))
+
+(let ((r (make-instance 'rect)))
+  (setf (x (p1 r)) 10)
+  (setf (y (p1 r)) 10)
+  (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x (p1 r)) (y (p1 r)) (x (p2 r)) (y (p2 r))))
+
+(let ((r (make-instance 'rect :p2 (make-instance 'point :x 5 :y 5))))
+  (setf (x (p1 r)) 10)
+  (setf (y (p1 r)) 10)
+  (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x (p1 r)) (y (p1 r)) (x (p2 r)) (y (p2 r))))
+
+;;--------------------------------------------------------------------
+
+(defgeneric x1 (rect))
+(defgeneric y1 (rect))
+(defgeneric x2 (rect))
+(defgeneric y2 (rect))
+
+(defmethod x1 ((r rect)) (x (p1 r)))
+(defmethod y1 ((r rect)) (y (p1 r)))
+(defmethod x2 ((r rect)) (x (p2 r)))
+(defmethod y2 ((r rect)) (y (p2 r)))
+
+(let ((r (make-instance 'rect :p2 (make-instance 'point :x 5 :y 5))))
+  (setf (x (p1 r)) 10)
+  (setf (y (p1 r)) 10)
+  (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r)))
+
+;;--------------------------------------------------------------------
+
+(defgeneric (setf x1) (value rect))
+(defgeneric (setf y1) (value rect))
+(defgeneric (setf x2) (value rect))
+(defgeneric (setf y2) (value rect))
+
+(defmethod (setf x1) (value (r rect)) (setf (x (p1 r)) value))
+(defmethod (setf y1) (value (r rect)) (setf (y (p1 r)) value))
+(defmethod (setf x2) (value (r rect)) (setf (x (p2 r)) value))
+(defmethod (setf y2) (value (r rect)) (setf (y (p2 r)) value))
+
+;;--------------------------------------------------------------------
+
+(defgeneric imprimir (rect) (:method ((r rect)) (format t "*Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r))))
+
+(let ((r (make-instance 'rect)))
+  (setf (x1 r) 3)
+  (setf (y1 r) 3)
+  (setf (x2 r) 8)
+  (setf (y2 r) 8)
+  (imprimir r)
+  (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r)))
+
+;;--------------------------------------------------------------------
+
+(defgeneric set-identity (rect value)
+  (:method ((r rect) value)
+    (setf (x1 r) value)
+    (setf (y1 r) value)
+    (setf (x2 r) value)
+    (setf (y2 r) value)))
+
+(let ((r (make-instance 'rect)))
+  (set-identity r (- 3))
+  (imprimir r))
+```
