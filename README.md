@@ -173,6 +173,8 @@ This is what we could call DEFMETHOD
 
 ## Example
 
+A small and functionable CLOS example code.
+
 ```Lisp
 (defclass point ()
   ((x :initform 0 :initarg :x :accessor x)
@@ -224,14 +226,16 @@ This is what we could call DEFMETHOD
 
 ;;--------------------------------------------------------------------
 
-(defgeneric imprimir (rect) (:method ((r rect)) (format t "*Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r))))
+(defgeneric print-rect-coords (rect)
+  (:method ((r rect))
+    (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r))))
 
 (let ((r (make-instance 'rect)))
   (setf (x1 r) 3)
   (setf (y1 r) 3)
   (setf (x2 r) 8)
   (setf (y2 r) 8)
-  (imprimir r)
+  (print-rect-coords r)
   (format t "Rect coords: (~d, ~d), (~d, ~d)~%" (x1 r) (y1 r) (x2 r) (y2 r)))
 
 ;;--------------------------------------------------------------------
@@ -245,5 +249,5 @@ This is what we could call DEFMETHOD
 
 (let ((r (make-instance 'rect)))
   (set-identity r (- 3))
-  (imprimir r))
+  (print-rect-coords r))
 ```
